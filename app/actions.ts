@@ -4,13 +4,14 @@ import { execFileSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { appendControlEvent, readPhase2Tasks, writePhase2Tasks, type Phase2TaskStatus } from "@/lib/phase2-control";
+import { appendControlEvent, readPhase2Tasks, sanitizeCommandOutput, writePhase2Tasks, type Phase2TaskStatus } from "@/lib/phase2-control";
 
 const taskStatuses: Phase2TaskStatus[] = ["backlog", "in-progress", "done"];
 const allowedSystemActions = {
   "openclaw-status": { label: "OpenClaw status", command: "openclaw", args: ["status", "--no-color"], timeout: 45_000 },
   "gateway-status": { label: "Gateway status", command: "openclaw", args: ["gateway", "status", "--no-color"], timeout: 15_000 },
   "git-status": { label: "Workspace git status", command: "git", args: ["status", "--short", "--branch"], timeout: 8_000 },
+  "openclaw-health": { label: "OpenClaw health", command: "openclaw", args: ["health", "--no-color"], timeout: 20_000 },
 } as const;
 
 function cleanText(value: FormDataEntryValue | null, max = 180) {
@@ -20,16 +21,6 @@ function cleanText(value: FormDataEntryValue | null, max = 180) {
 function safeStatus(value: FormDataEntryValue | null): Phase2TaskStatus {
   const status = cleanText(value, 40) as Phase2TaskStatus;
   return taskStatuses.includes(status) ? status : "backlog";
-}
-
-function sanitizeCommandOutput(output: string) {
-  return output
-    .replace(/(token config \()([^\n)]*)(\))/gi, "$1[redacted]$3")
-    .replace(/(Token:\s*)\S+/gi, "$1[redacted]")
-    .replace(/(Authorization:\s*Bearer\s+)\S+/gi, "$1[redacted]")
-    .replace(/ghp_[A-Za-z0-9_]+/g, "ghp_[redacted]")
-    .replace(/github_pat_[A-Za-z0-9_]+/g, "github_pat_[redacted]")
-    .replace(/sk-[A-Za-z0-9_-]{16,}/g, "sk-[redacted]");
 }
 
 function finish(path: string, message: string) {

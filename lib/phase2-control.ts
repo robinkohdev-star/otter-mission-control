@@ -59,3 +59,13 @@ export function appendControlEvent(event: ControlEvent) {
   const events = [event, ...readControlEvents()].slice(0, 40);
   writeJson(EVENTS_FILE, events);
 }
+
+export function sanitizeCommandOutput(output: string) {
+  return output
+    .replace(/(token config \()([^\n)]*)(\))/gi, "$1[redacted]$3")
+    .replace(/(Token:\s*)\S+/gi, "$1[redacted]")
+    .replace(/(Authorization:\s*Bearer\s+)\S+/gi, "$1[redacted]")
+    .replace(/ghp_[A-Za-z0-9_]+/g, "ghp_[redacted]")
+    .replace(/github_pat_[A-Za-z0-9_]+/g, "github_pat_[redacted]")
+    .replace(/sk-[A-Za-z0-9_-]{16,}/g, "sk-[redacted]");
+}

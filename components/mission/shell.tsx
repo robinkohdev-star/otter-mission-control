@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Activity, BookOpen, Bot, CalendarDays, FolderKanban, Gamepad2, ListTodo, Network } from "lucide-react";
+import { Activity, BookOpen, Bot, CalendarDays, FolderKanban, Gamepad2, ListTodo, Network, RadioTower } from "lucide-react";
 import { getDashboardData } from "@/lib/openclaw-data";
 import { Badge } from "@/components/ui/badge";
 import { PixelOtter } from "@/components/mission/otter";
@@ -13,6 +13,7 @@ const nav = [
   { href: "/team", label: "Team", icon: Network, index: "06" },
   { href: "/office", label: "Visual Office", icon: Bot, index: "07" },
   { href: "/control", label: "Control", icon: Gamepad2, index: "08" },
+  { href: "/operations", label: "Operations", icon: RadioTower, index: "09" },
 ];
 
 export function MissionShell({ children }: { children: React.ReactNode }) {

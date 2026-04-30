@@ -5,6 +5,7 @@ dist/
 build/
 .openclaw/
 state/phase2-*.json
+memory/.dreams/
 .env*
 !.env.example
 .DS_Store

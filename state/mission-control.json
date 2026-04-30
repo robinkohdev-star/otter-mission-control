@@ -8,10 +8,10 @@
       "description": "A Next.js localhost dashboard for live visibility and control over the OpenClaw crew, workspace files, schedules, memory, docs, team state, and GitHub activity.",
       "status": "active",
       "priority": "P0",
-      "progress": 45,
+      "progress": 70,
       "githubRepo": "",
       "sourcePaths": ["state/mission-control.json", "memory/2026-04-29.md", "USER.md", "AGENTS.md", "SOUL.md", "HEARTBEAT.md"],
-      "nextMove": "Test Phase 2 safe control layer: create/update dashboard tasks and run allowlisted OpenClaw/gateway/git status checks from the Control screen."
+      "nextMove": "Test Phase 3 live operations layer: auto-refreshing operations page, gateway log tail, session details, health signals, and confirmed safe workflow triggers."
     }
   ],
   "crew": [
@@ -52,5 +52,5 @@
       "sources": ["state/mission-control.json", "logs/config-health.json"]
     }
   ],
-  "screens": ["Projects", "Tasks", "Docs", "Calendar", "Memory", "Team", "Visual Office", "Control"]
+  "screens": ["Projects", "Tasks", "Docs", "Calendar", "Memory", "Team", "Visual Office", "Control", "Operations"]
 }

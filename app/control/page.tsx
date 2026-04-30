@@ -58,6 +58,7 @@ export default async function ControlPage({ searchParams }: { searchParams: Prom
           <ControlButton action="openclaw-status" label="Check OpenClaw status" />
           <ControlButton action="gateway-status" label="Check gateway status" />
           <ControlButton action="git-status" label="Check workspace git status" />
+          <ControlButton action="openclaw-health" label="Run OpenClaw health" />
         </div>
       </Card>
     </div>
