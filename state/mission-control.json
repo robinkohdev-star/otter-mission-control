@@ -1,0 +1,56 @@
+{
+  "projectName": "Otter Mission Control",
+  "missionStatement": "OpenClaw is your always-on AI crew that keeps you ahead on AI and geopolitics intelligence, ships code reliably, and maintains perfect system health — with a professional, soothing, and fun personality that frees you to focus on building products, personal growth, and scaling your business.",
+  "projects": [
+    {
+      "id": "otter-mission-control",
+      "name": "Otter Mission Control",
+      "description": "A Next.js localhost dashboard for live visibility and control over the OpenClaw crew, workspace files, schedules, memory, docs, team state, and GitHub activity.",
+      "status": "active",
+      "priority": "P0",
+      "progress": 45,
+      "githubRepo": "",
+      "sourcePaths": ["state/mission-control.json", "memory/2026-04-29.md", "USER.md", "AGENTS.md", "SOUL.md", "HEARTBEAT.md"],
+      "nextMove": "Test Phase 2 safe control layer: create/update dashboard tasks and run allowlisted OpenClaw/gateway/git status checks from the Control screen."
+    }
+  ],
+  "crew": [
+    {
+      "id": "scoutorder",
+      "name": "ScoutOrder",
+      "role": "Morning AI news scanner",
+      "mission": "Scans Reddit, HackerNews, and GitHub, scores the content watchlist, and posts a daily digest to Discord.",
+      "accent": "purple",
+      "statusLabel": "STANDBY",
+      "sources": ["state/mission-control.json"]
+    },
+    {
+      "id": "geoorder",
+      "name": "GeoOrder",
+      "role": "Geopolitics and Singapore-context scanner",
+      "mission": "Tracks geopolitics, microeconomics, and Singapore-context hard/soft news.",
+      "accent": "red",
+      "statusLabel": "STANDBY",
+      "sources": ["state/mission-control.json"]
+    },
+    {
+      "id": "buildorder",
+      "name": "BuildOrder",
+      "role": "Coding agent",
+      "mission": "Plans with Gemma4, implements with Qwen Coder on fresh branches, and posts summaries to Discord for review.",
+      "accent": "blue",
+      "statusLabel": "ACTIVE",
+      "sources": ["state/mission-control.json", "git"]
+    },
+    {
+      "id": "healthorder",
+      "name": "HealthOrder",
+      "role": "Twice-daily health checker",
+      "mission": "Silent-by-default local-model health checker that only speaks up on failure.",
+      "accent": "pink",
+      "statusLabel": "OK",
+      "sources": ["state/mission-control.json", "logs/config-health.json"]
+    }
+  ],
+  "screens": ["Projects", "Tasks", "Docs", "Calendar", "Memory", "Team", "Visual Office", "Control"]
+}

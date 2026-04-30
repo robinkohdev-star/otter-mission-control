@@ -14,6 +14,7 @@ Standing preferences:
 - Act without asking when no confirmation or approval is needed.
 - Ask first for destructive operations, especially deletes.
 - Push back when confidence is at least ~80% that an idea is flawed, risky, inefficient, or missing a better path.
+- After making material workspace changes, commit them to Git for a clear record unless K says not to.
 
 ---
 
