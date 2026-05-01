@@ -8,10 +8,44 @@
       "description": "A Next.js localhost dashboard for live visibility and control over the OpenClaw crew, workspace files, schedules, memory, docs, team state, and GitHub activity.",
       "status": "active",
       "priority": "P0",
-      "progress": 70,
+      "progress": 80,
       "githubRepo": "",
       "sourcePaths": ["state/mission-control.json", "memory/2026-04-29.md", "USER.md", "AGENTS.md", "SOUL.md", "HEARTBEAT.md"],
-      "nextMove": "Test Phase 3 live operations layer: auto-refreshing operations page, gateway log tail, session details, health signals, and confirmed safe workflow triggers."
+      "nextMove": "Test Phase 4 GitHub integration: per-agent repository tracking, PR visibility, BuildOrder activity dashboard."
+    }
+  ],
+  "agentRepos": [
+    {
+      "id": "scoutorder",
+      "name": "scoutorder-agent",
+      "description": "Morning AI news scanner. Reddit, HackerNews, GitHub watchlists. Daily digest to Discord.",
+      "githubRepo": "robinkohdev-star/scoutorder-agent",
+      "localPath": "~/workspace/scoutorder-agent",
+      "status": "not-cloned"
+    },
+    {
+      "id": "geoorder",
+      "name": "geoorder-agent",
+      "description": "Geopolitics and Singapore-context scanner. Tracks hard/soft news, microeconomics.",
+      "githubRepo": "robinkohdev-star/geoorder-agent",
+      "localPath": "~/workspace/geoorder-agent",
+      "status": "not-cloned"
+    },
+    {
+      "id": "buildorder",
+      "name": "buildorder-agent",
+      "description": "Coding agent. Plans with Gemma4, implements with Qwen Coder. Fresh branches, Discord summaries.",
+      "githubRepo": "robinkohdev-star/buildorder-agent",
+      "localPath": "~/workspace/buildorder-agent",
+      "status": "not-cloned"
+    },
+    {
+      "id": "healthorder",
+      "name": "healthorder-agent",
+      "description": "Twice-daily health checker. Local model, zero cost. Silent unless failure.",
+      "githubRepo": "robinkohdev-star/healthorder-agent",
+      "localPath": "~/workspace/healthorder-agent",
+      "status": "not-cloned"
     }
   ],
   "crew": [
@@ -22,7 +56,8 @@
       "mission": "Scans Reddit, HackerNews, and GitHub, scores the content watchlist, and posts a daily digest to Discord.",
       "accent": "purple",
       "statusLabel": "STANDBY",
-      "sources": ["state/mission-control.json"]
+      "sources": ["state/mission-control.json"],
+      "repo": "robinkohdev-star/scoutorder-agent"
     },
     {
       "id": "geoorder",
@@ -31,7 +66,8 @@
       "mission": "Tracks geopolitics, microeconomics, and Singapore-context hard/soft news.",
       "accent": "red",
       "statusLabel": "STANDBY",
-      "sources": ["state/mission-control.json"]
+      "sources": ["state/mission-control.json"],
+      "repo": "robinkohdev-star/geoorder-agent"
     },
     {
       "id": "buildorder",
@@ -40,7 +76,8 @@
       "mission": "Plans with Gemma4, implements with Qwen Coder on fresh branches, and posts summaries to Discord for review.",
       "accent": "blue",
       "statusLabel": "ACTIVE",
-      "sources": ["state/mission-control.json", "git"]
+      "sources": ["state/mission-control.json", "git"],
+      "repo": "robinkohdev-star/buildorder-agent"
     },
     {
       "id": "healthorder",
@@ -49,8 +86,9 @@
       "mission": "Silent-by-default local-model health checker that only speaks up on failure.",
       "accent": "pink",
       "statusLabel": "OK",
-      "sources": ["state/mission-control.json", "logs/config-health.json"]
+      "sources": ["state/mission-control.json", "logs/config-health.json"],
+      "repo": "robinkohdev-star/healthorder-agent"
     }
   ],
-  "screens": ["Projects", "Tasks", "Docs", "Calendar", "Memory", "Team", "Visual Office", "Control", "Operations"]
+  "screens": ["Projects", "Tasks", "Docs", "Calendar", "Memory", "Team", "Visual Office", "Control", "Operations", "GitHub"]
 }
