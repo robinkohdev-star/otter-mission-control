@@ -5,6 +5,7 @@ import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { appendControlEvent, readPhase2Tasks, sanitizeCommandOutput, writePhase2Tasks, type Phase2TaskStatus } from "@/lib/phase2-control";
+import { triggerAgent } from "@/lib/agent-triggers";
 
 const taskStatuses: Phase2TaskStatus[] = ["backlog", "in-progress", "done"];
 const allowedSystemActions = {
@@ -82,4 +83,31 @@ export async function runSafeSystemAction(formData: FormData) {
     output: sanitizeCommandOutput(output).slice(0, 9000),
   });
   finish("/control", `${item.label}: ${status}`);
+}
+
+export async function runAgentTrigger(formData: FormData) {
+  const agentId = cleanText(formData.get("agentId"), 80);
+  const confirmed = cleanText(formData.get("confirmed")) === "true";
+  
+  // Get agent config to check if destructive
+  const { AGENTS } = await import("@/lib/agent-triggers");
+  const agent = AGENTS.find(a => a.id === agentId);
+  
+  if (!agent) {
+    return finish("/agents", "Agent not found.");
+  }
+  
+  // Require confirmation for destructive agents
+  if (agent.destructive && !confirmed) {
+    return finish("/agents", "Confirmation required for this agent.");
+  }
+  
+  const result = await triggerAgent(agentId);
+  
+  if (!result.success) {
+    finish("/agents", `Failed: ${result.error}`);
+  }
+  
+  revalidatePath("/agents");
+  redirect("/agents");
 }

@@ -8,10 +8,10 @@
       "description": "A Next.js localhost dashboard for live visibility and control over the OpenClaw crew, workspace files, schedules, memory, docs, team state, and GitHub activity.",
       "status": "active",
       "priority": "P0",
-      "progress": 80,
+      "progress": 90,
       "githubRepo": "robinkohdev-star/otter-mission-control",
       "sourcePaths": ["state/mission-control.json", "memory/2026-04-29.md", "USER.md", "AGENTS.md", "SOUL.md", "HEARTBEAT.md"],
-      "nextMove": "Test Phase 4 GitHub integration: per-agent repository tracking, PR visibility, BuildOrder activity dashboard."
+      "nextMove": "Test Phase 5 agent triggers: manual workflow execution, cooldown enforcement, status tracking."
     }
   ],
   "agentRepos": [
@@ -90,5 +90,5 @@
       "repo": "robinkohdev-star/healthorder-agent"
     }
   ],
-  "screens": ["Projects", "Tasks", "Docs", "Calendar", "Memory", "Team", "Visual Office", "Control", "Operations", "GitHub"]
+  "screens": ["Projects", "Tasks", "Docs", "Calendar", "Memory", "Team", "Visual Office", "Control", "Operations", "GitHub", "Agents"]
 }
