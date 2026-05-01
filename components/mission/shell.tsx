@@ -21,18 +21,18 @@ export function MissionShell({ children }: { children: React.ReactNode }) {
   const data = getDashboardData();
   return (
     <div className="grid min-h-screen grid-cols-1 lg:grid-cols-[292px_1fr]">
-      <aside className="relative z-10 border-b border-cyan-200/15 bg-slate-950/70 p-5 shadow-2xl backdrop-blur-xl lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r">
-        <div className="neon-card p-5">
+      <aside className="relative z-10 flex max-h-screen flex-col border-b border-cyan-200/15 bg-slate-950/70 p-5 shadow-2xl backdrop-blur-xl lg:sticky lg:top-0 lg:border-b-0 lg:border-r">
+        <div className="neon-card shrink-0 p-5">
           <div className="mono text-xs font-black uppercase tracking-[.24em] text-cyan-200">Mission Control</div>
           <h1 className="mt-3 text-2xl font-black tracking-[-.05em]">Otter Mission Control</h1>
           <div className="mt-3 flex items-center gap-2 text-xs font-black text-emerald-200 mono"><span className="h-2.5 w-2.5 rounded-full bg-emerald-300 shadow-[0_0_12px_#75ff9d]" /> ONLINE</div>
         </div>
-        <nav className="mt-5 grid gap-2">
+        <nav className="mt-5 flex-1 overflow-y-auto pr-1 grid gap-2">
           {nav.map((item) => <Link key={item.href} href={item.href} className="group flex items-center justify-between rounded-2xl border border-transparent px-4 py-3 text-sm font-semibold text-slate-400 transition hover:border-cyan-200/25 hover:bg-cyan-200/10 hover:text-white"><span className="flex items-center gap-3"><item.icon className="h-4 w-4" />{item.label}</span><span className="mono text-[10px] font-black text-pink-300">{item.index}</span></Link>)}
         </nav>
-        <div className="pointer-events-none mt-6 lg:absolute lg:bottom-5 lg:left-5 lg:right-5">
-          <PixelOtter accent="pink" active className="h-16 w-16" />
-          <p className="mt-3 text-xs leading-5 text-slate-400">{data.registry.missionStatement.slice(0, 170)}…</p>
+        <div className="pointer-events-none mt-4 shrink-0 border-t border-cyan-200/10 pt-4">
+          <PixelOtter accent="pink" active className="h-14 w-14" />
+          <p className="mt-2 text-xs leading-5 text-slate-400">{data.registry.missionStatement.slice(0, 140)}…</p>
         </div>
       </aside>
       <main className="relative z-10 min-w-0 p-5 md:p-8">{children}</main>
