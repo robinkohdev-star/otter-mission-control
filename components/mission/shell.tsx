@@ -29,7 +29,7 @@ export function MissionShell({ children }: { children: React.ReactNode }) {
         <nav className="mt-5 grid gap-2">
           {nav.map((item) => <Link key={item.href} href={item.href} className="group flex items-center justify-between rounded-2xl border border-transparent px-4 py-3 text-sm font-semibold text-slate-400 transition hover:border-cyan-200/25 hover:bg-cyan-200/10 hover:text-white"><span className="flex items-center gap-3"><item.icon className="h-4 w-4" />{item.label}</span><span className="mono text-[10px] font-black text-pink-300">{item.index}</span></Link>)}
         </nav>
-        <div className="mt-6 lg:absolute lg:bottom-5 lg:left-5 lg:right-5">
+        <div className="pointer-events-none mt-6 lg:absolute lg:bottom-5 lg:left-5 lg:right-5">
           <PixelOtter accent="pink" active className="h-16 w-16" />
           <p className="mt-3 text-xs leading-5 text-slate-400">{data.registry.missionStatement.slice(0, 170)}…</p>
         </div>
