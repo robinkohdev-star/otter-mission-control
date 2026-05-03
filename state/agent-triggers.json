@@ -1,0 +1,24 @@
+{
+  "agents": {
+    "scoutorder": {
+      "lastRun": null,
+      "lastStatus": "idle",
+      "lastError": null
+    },
+    "geoorder": {
+      "lastRun": null,
+      "lastStatus": "idle",
+      "lastError": null
+    },
+    "buildorder": {
+      "lastRun": null,
+      "lastStatus": "idle",
+      "lastError": null
+    },
+    "healthorder": {
+      "lastRun": null,
+      "lastStatus": "idle",
+      "lastError": null
+    }
+  }
+}
