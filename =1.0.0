@@ -1,0 +1,5 @@
+Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+Collecting python-dotenv
+  Using cached https://www.piwheels.org/simple/python-dotenv/python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+Installing collected packages: python-dotenv
+Successfully installed python-dotenv-1.2.2

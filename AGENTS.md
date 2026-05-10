@@ -118,6 +118,31 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 **Don't overdo it:** One reaction per message max. Pick the one that fits best.
 
+## Agent Triggers
+
+### BuildOrder (Discord Activated)
+**Trigger:** Say `buildorder` or `@buildorder <task>` in any configured Discord channel
+**What it does:**
+- Runs the coding agent from `~/workspace/buildorder-agent`
+- Fetches tasks from `state/phase2-tasks.json` and memory files
+- Plans with template-based architecture
+- Implements code changes
+- Creates git branches (`buildorder/<feature>`)
+- Commits changes to GitHub
+- Posts summary to Discord via webhook
+
+**Cooldown:** 5 minutes between triggers
+**Status tracking:** `state/agent-triggers.json`
+**Logs:** `logs/buildorder-discord.log`
+
+The agent works autonomously - once triggered, it will:
+1. Parse available tasks
+2. Plan the implementation
+3. Write code
+4. Create a branch
+5. Commit and push
+6. Post results to Discord
+
 ## Tools
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
