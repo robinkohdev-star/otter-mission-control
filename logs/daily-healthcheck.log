@@ -1,31 +1,31 @@
 === OpenClaw Daily Healthcheck ===
-Mon 11 May 00:41:35 +08 2026
+Tue 23 Jun 09:00:12 +08 2026
 
 --- Summary ---
-🔴 Critical: 1 issues
+🔴 Critical: 0 issues
 🟡 Warnings: 1 issues
-📦 
+📦 │ Update   │ available · npm · npm update 2026.6.9 · deps ok                                                           │
 
 --- Security Audit ---
 │
-◇  Config warnings ────────────────────────────────────────────────────────╮
-│                                                                          │
-│  - plugins.entries.discord: plugin not installed: discord — install the  │
-│    official external plugin with: openclaw plugins install               │
-│    @openclaw/discord                                                     │
-│                                                                          │
-├──────────────────────────────────────────────────────────────────────────╯
+◇  Doctor warnings ──────────────────────────────────────────────────────╮
+│                                                                        │
+│  - Left plugin install index in place because shared SQLite state has  │
+│    conflicting plugin install metadata for: discord                    │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+[state-migrations] Legacy state migration warnings:
+- Left plugin install index in place because shared SQLite state has conflicting plugin install metadata for: discord
+│
+◇  Doctor warnings ──────────────────────────────────────────────────────╮
+│                                                                        │
+│  - Left plugin install index in place because shared SQLite state has  │
+│    conflicting plugin install metadata for: discord                    │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
 OpenClaw security audit
-Summary: 1 critical · 3 warn · 1 info
+Summary: 0 critical · 4 warn · 2 info
 Run deeper: openclaw security audit --deep
-
-CRITICAL
-models.small_params Small models require sandboxing and web tools disabled
-  Small models (<=300B params) detected:
-- ollama/qwen2.5-coder:7b (7B) @ agents.defaults.model.fallbacks (unsafe; sandbox=off; web=[web_search, web_fetch, browser])
-Uncontrolled input tools allowed: web_search, web_fetch, browser.
-Small models are not recommended for untrusted inputs.
-  Fix: If you must use small models, enable sandboxing for all sessions (agents.defaults.sandbox.mode="all") and disable web_search/web_fetch/browser (tools.deny=["group:web","browser"]).
 
 WARN
 gateway.trusted_proxies_missing Reverse proxy headers are not trusted
@@ -40,9 +40,13 @@ Potential high-impact tool exposure contexts:
 - agents.defaults (sandbox=off; runtime=[exec, process]; fs=[read, write, edit, apply_patch]; fs.workspaceOnly=false)
 OpenClaw's default security model is personal-assistant (one trusted operator boundary), not hostile multi-tenant isolation on one shared gateway.
   Fix: If users may be mutually untrusted, split trust boundaries (separate gateways + credentials, ideally separate OS users/hosts). If you intentionally run shared-user access, set agents.defaults.sandbox.mode="all", keep tools.fs.workspaceOnly=true, deny runtime/fs/web tools unless required, and keep personal/private identities + credentials off that runtime.
-gateway.probe_failed Gateway probe failed (deep)
-  timeout
-  Fix: Run "openclaw status --all" to debug connectivity/auth, then re-run "openclaw security audit --deep".
+fs.state_dir.perms_group_writable State dir is group-writable
+  /home/rk/.openclaw mode=775; group users can write into your OpenClaw state.
+  Fix: chmod 700 /home/rk/.openclaw
+plugins.installs_missing_integrity Plugin index is missing integrity metadata
+  Plugin index records missing integrity:
+- discord
+  Fix: Reinstall or update plugins to refresh install metadata with resolved integrity hashes.
 
 INFO
 summary.attack_surface Attack surface summary
@@ -52,6 +56,12 @@ hooks.webhooks: disabled
 hooks.internal: disabled
 browser control: enabled
 trust model: personal assistant (one trusted operator boundary), not hostile multi-tenant on one shared gateway
+models.small_params Small models require sandboxing and web tools disabled
+  Small models (<=300B params) detected:
+- ollama/qwen2.5-coder:7b (7B) @ agents.defaults.model.fallbacks (ok; sandbox=off; web=[off])
+No web/browser tools detected for these models.
+Small models are not recommended for untrusted inputs.
+  Fix: If you must use small models, disable web_search/web_fetch/browser globally or for each small model with tools.byProvider["provider/model"].deny=["group:web","browser"]; use agents.defaults.sandbox.mode="all" for defense in depth.
 
 --- Update Status ---
 OpenClaw update status
@@ -59,7 +69,9 @@ OpenClaw update status
 ┌──────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │ Item     │ Value                                                                                                     │
 ├──────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ Install  │ pnpm                                                                                                      │
+│ Install  │ npm                                                                                                       │
 │ Channel  │ stable (default)                                                                                          │
-│ Update   │ pnpm · up to date · npm latest 2026.5.7                                                                   │
+│ Update   │ available · npm · npm update 2026.6.9 · deps ok                                                           │
 └──────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Update available (npm 2026.6.9). Run: openclaw update
